@@ -21,6 +21,27 @@ const create = async (req, res) => {
   }
 };
 
+const signIn = async (req, res) => {
+  try {
+    const response = await userService.signIn(req.body);
+    res.status(200).json({
+      data: response,
+      success: true,
+      message: "Successfully signed in",
+      err: {},
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Something went wrong",
+      data: {},
+      success: false,
+      err: err,
+    });
+  }
+};
+
+// const
 module.exports = {
   create,
+  signIn
 };
